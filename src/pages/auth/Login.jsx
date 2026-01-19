@@ -155,36 +155,36 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Quick Login Hint (Dev only) */}
-          {import.meta.env.DEV && (
-            <div className="mt-6 p-4 bg-yellow-500/20 border border-yellow-500/30 rounded-xl backdrop-blur-sm">
-              <p className="text-xs text-yellow-200 text-center mb-2 font-semibold">
-                🧪 Mode Développement - Comptes de test
-              </p>
-              <div className="grid grid-cols-3 gap-2 text-xs">
-                {[
-                  { role: 'Directeur', email: 'directeur@eduplatform.com' },
-                  { role: 'Formateur', email: 'formateur1@eduplatform.com' },
-                  { role: 'Étudiant', email: 'etudiant1@eduplatform.com' }
-                ].map(({ role, email: testEmail }) => (
-                  <button
-                    key={role}
-                    type="button"
-                    onClick={() => {
-                      setEmail(testEmail);
-                      setMotDePasse('password123');
-                    }}
-                    className="bg-white/10 hover:bg-white/20 text-white py-2 px-2 rounded-lg transition-colors"
-                  >
-                    {role}
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-yellow-200 text-center mt-2">
-                Mot de passe: <code className="bg-black/20 px-2 py-1 rounded">password123</code>
-              </p>
+          {/* ✅ Quick Login - TOUJOURS AFFICHÉ (même en production) */}
+          <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-xl backdrop-blur-sm">
+            <p className="text-xs text-yellow-200 text-center mb-2 font-semibold">
+              🧪 Comptes de démonstration
+            </p>
+            <div className="grid grid-cols-3 gap-2 text-xs">
+              {[
+                { role: 'Directeur', email: 'directeur@eduplatform.com', icon: '👔' },
+                { role: 'Formateur', email: 'formateur1@eduplatform.com', icon: '👨‍🏫' },
+                { role: 'Étudiant', email: 'etudiant1@eduplatform.com', icon: '🎓' }
+              ].map(({ role, email: testEmail, icon }) => (
+                <button
+                  key={role}
+                  type="button"
+                  onClick={() => {
+                    setEmail(testEmail);
+                    setMotDePasse('password123');
+                  }}
+                  className="bg-white/10 hover:bg-white/20 text-white py-2 px-2 rounded-lg transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-1 group"
+                  title={`Se connecter en tant que ${role}`}
+                >
+                  <span className="text-lg group-hover:scale-110 transition-transform">{icon}</span>
+                  <span className="font-medium">{role}</span>
+                </button>
+              ))}
             </div>
-          )}
+            <p className="text-xs text-yellow-200 text-center mt-3">
+              Mot de passe: <code className="bg-black/30 px-2 py-1 rounded font-mono">password123</code>
+            </p>
+          </div>
         </div>
 
         {/* Footer */}
